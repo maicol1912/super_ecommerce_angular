@@ -1,0 +1,335 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Gilroy-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Gilroy-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gilroy-Heavy";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Gilroy-Heavy.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gilroy-Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Gilroy-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gilroy-Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Gilroy-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gilroy-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Gilroy-Regular.woff") format("woff");
+}
+
+* {
+  font-family: "Gilroy-Regular", Poppins, Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --color-primary: #ff921e;
+  --color-secundary: #b3886b;
+  --color-light: #fff7ee;
+  --color-flat: #dfe0df;
+}
+
+.mat-button-base {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 14px !important;
+}
+
+.mat-raised-button {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 14px !important;
+}
+.outline {
+  border-radius: 16px !important;
+  border-color: #ff921e !important;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+  0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  height: 100% !important;
+  width: 100% !important;
+  margin-top: 1rem;
+}
+
+.mat-sidenav {
+  //border-color: #ff921e !important;
+  border-style: solid;
+  border-width: 0 1px 0 0;
+}
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: var(--color-primary);
+}
+
+.mat-input-element {
+  caret-color: var(--color-primary);
+}
+
+.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: var(--color-primary) !important;
+}
+
+.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: var(--color-primary) !important;
+}
+
+.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: var(--color-primary) !important;
+}
+
+.col {
+  padding-top: 1rem;
+  flex-basis: 19rem;
+}
+
+.row {
+  margin: 0rem 1rem 0rem 1rem !important;
+}
+
+.mini-card {
+  width: 19rem !important;
+}
+
+.mat-card {
+  border-radius: 16px !important;
+  border: #ff921e !important;
+  height: 100%;
+}
+
+.mat-expansion-panel {
+  border-radius: 16px !important;
+  border: #ff921e !important;
+  height: 100%;
+}
+
+.mat-card-header {
+  justify-content: center !important;
+}
+
+.mat-card-title {
+  color: #ff5600;
+  text-align: center !important;
+  justify-content: center !important;
+  height: 3rem;
+}
+
+.mat-card-subtitle {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+.mat-button-base:hover {
+  background: linear-gradient(
+      90deg,
+      rgba(255, 146, 30, 1) 50%,
+      rgba(255, 110, 64, 1) 100%
+  ) !important;
+  color: white !important    ;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: var(--color-primary) !important;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: rgba(255, 146, 30, 0.54) !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: var(--color-secundary) !important;
+}
+
+.mat-toolbar.mat-primary {
+  background-color: var(--color-primary) !important;
+}
+
+::ng-deep {
+  button {
+    margin: 1rem;
+    color: white !important;
+  }
+}
+
+.toolbar-img {
+  background-color: ivory !important;
+}
+
+.reportViewer {
+  height: 720px;
+}
+.mat-button {
+  background-color: orange;
+}
+.mat-button {
+  background-color: orange !important;
+}
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+.custom_relative {
+  position: relative !important;
+}
+
+.custom_absolute {
+  position: absolute !important;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
+.pr-0 {
+  padding-right: 0px;
+}
+
+.tipy {
+  display: inline-block;
+  border: 1px solid #ff921e;
+  padding: 0px 10px;
+  background: #ff921e;
+  color: white;
+  border-radius: 10px;
+  margin-top: 10px !important;
+  font-weight: bold;
+}
+
+.tipy_container {
+  border: 2px solid #ff921e;
+  border-radius: 10px;
+}
+
+.phones {
+  border: 2px solid #ff921e;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.phones_title {
+  background: #ff921e;
+  font-size: 0.8em;
+  padding-left: 5px;
+  color: white;
+}
+
+.divider-10 {
+  height: 10px;
+}
+.divider-20 {
+  height: 20px;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.no-margin-row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.CIR {
+  color: red;
+  font-weight: bold;
+}
+
+.BEC {
+  color: #ff921e;
+  font-weight: bold;
+}
+
+.Acuerdo_de_pago_con_descuento {
+  background: #ff921e;
+  padding: 5px;
+  color: #2c2b2b;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.Acuerdo_de_pago {
+  background: #ff921e;
+  padding: 5px;
+  color: #2c2b2b;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.excel-button {
+  background-color: #017340 !important;
+  margin-left: 5px;
+  padding: 7px;
+  border: 0px;
+  color: white;
+  font-weight: bold;
+  border-radius: 13px;
+}
+
+.acept_file {
+  background-color: #017340 !important;
+  margin-left: 5px;
+  padding: 7px;
+  border: 0px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.scroll-none::-webkit-scrollbar {
+  display: none;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done {
+  background-color: #ff921e !important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #ff921e !important;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
