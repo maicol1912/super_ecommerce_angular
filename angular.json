@@ -101,6 +101,11 @@
               "src/app/shared/common/styles/index.css"
             ],
             "scripts": [
+            ],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "crypto-js",
+              "bcryptjs"
             ]
           },
           "configurations": {

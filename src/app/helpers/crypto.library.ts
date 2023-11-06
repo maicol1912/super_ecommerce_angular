@@ -1,4 +1,4 @@
-/*import * as crypto from 'crypto-js';
+import * as crypto from 'crypto-js';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 //import * as bcrypt from 'bcryptjs';
@@ -52,4 +52,3 @@ export class CryptoLibrary {
   }
 
 }
-*/

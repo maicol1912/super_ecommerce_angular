@@ -1,3 +1,4 @@
+<i class="material-icons">check</i>
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="card" style="width: 400px;height: 400px">
     <div class="card-body" style="height: 100%">
@@ -6,10 +7,18 @@
         <div class="form-group mb-3">
           <label for="username" class="row">Nombre de Usuario</label>
           <input type="email" matInput class="form-control" id="username" formControlName="email" placeholder="Ingrese su usuario" autocomplete="off">
+          <div *ngIf="authForm.get('email')?.value?.length > 0" class="valid-invalid">
+            <i class="material-icons" *ngIf="authForm.get('email')?.valid">check</i>
+            <i class="material-icons" *ngIf="authForm.get('email')?.invalid">check</i>
+            <div [ngClass]="{ 'VALID': authForm.get('email')?.valid, 'INVALID': authForm.get('email')?.invalid }">Email válido</div>
+          </div>
         </div>
         <div class="form-group mb-3" style="height: 20%">
           <label for="password" class="row">Contraseña</label>
           <input type="password" class="form-control" id="password" formControlName="password" placeholder="Ingrese su contraseña" autocomplete="off">
+          <div *ngIf="authForm.get('password')?.value?.length > 0" class="valid-invalid">
+            <div [ngClass]="{ 'VALID': authForm.get('password')?.valid, 'INVALID': authForm.get('email')?.invalid }">Password valido</div>
+          </div>
         </div>
         <div class="text-center">
           <button mat-button class="mat-button-base fx-align-center" type="submit" style="width: 350px" (click)="login()">Ingresar</button>

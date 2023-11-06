@@ -24,10 +24,6 @@ export class AuthService extends BaseService{
           return null;
         }
         SwalService.openInfoAlert("Login exitoso","Se inicio sesion correctamente");
-        window.localStorage.setItem(
-          '_digi_user',
-          JSON.stringify(response.result.token)
-        );
         return response;
       })
     );

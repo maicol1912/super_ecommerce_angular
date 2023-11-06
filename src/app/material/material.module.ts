@@ -67,6 +67,7 @@ const MaterialComponents = [
   MatDialogModule,
   MatSlideToggleModule,
   MatRadioModule,
+  MatIconModule
 ]
 
 

@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {PageResources} from "../../../helpers/page-resources";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SwalService} from "../../../services/swal.service";
+import {Store} from "@ngrx/store";
+import {AuthActions} from "../../../state/actions";
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,7 @@ export class LoginComponent {
   constructor(
     private readonly authService:AuthService,
     private router: Router,
+    private store: Store,
     private formBuilder: FormBuilder
   ) {
   }
@@ -26,12 +29,7 @@ export class LoginComponent {
   login(){
     this.authForm.markAllAsTouched();
     if (this.authForm.valid) {
-      this.authService.login(this.authForm.value).subscribe((response)=>{
-        if(response){
-          this.router.navigate([PageResources.listProducts]);
-          return
-        }
-      })
+        this.store.dispatch(AuthActions.LoginAction({payload:this.authForm.value}))
     }else{
       SwalService.openErrorAlert("Error en formulario","El formulario no es valido")
     }
