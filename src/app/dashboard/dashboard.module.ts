@@ -11,7 +11,8 @@ import {MaterialModule} from "../material/material.module";
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    MaterialModule
   ],
   exports:[
     CommonModule,

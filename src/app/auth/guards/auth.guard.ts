@@ -18,15 +18,13 @@ export class AuthGuard implements CanActivate {
               private readonly authService:AuthService) {}
 
    canActivate(): Observable<boolean> {
-     let token;
-     this.store.select(selectAccessToken).subscribe((value) => {
-       token = value;
-     });
+    let token = window.localStorage.getItem('_digi_user');
     if (!token) {
       this.router.navigate([PageResources.login]);
       return of(false);
     }
-     return this.authService.checkJwt(token).pipe(
+       const tokenFormatted = token.replace(/"/g, '');
+     return this.authService.checkJwt(tokenFormatted).pipe(
        map((response: boolean) => {
          if (!response) {
            this.router.navigate([PageResources.login]);

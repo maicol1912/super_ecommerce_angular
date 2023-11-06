@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 export enum AuthActionTypes{
   Login = '[Auth] Inicio de sesión',
-  Logout = '[Auth] Cierre de sesión',
   LoginSuccess = '[Auth] Inicio de sesión exitoso',
   LoginFailure = '[Auth] Inicio de sesión fallido',
+  Logout = '[Auth] Cierre de sesión',
   ChangePassword = '[Auth] Cambiar contraseña',
   ChangePasswordSuccess = '[Auth] Cambio de contraseña exitoso',
   ChangePasswordFailure = '[Auth] Cambio de contraseña fallido',
@@ -21,9 +21,9 @@ export enum AuthActionTypes{
 
 export const AuthActions = {
   LoginAction: createAction(AuthActionTypes.Login, props<{ payload: any }>()),
-  LogoutAction: createAction(AuthActionTypes.Logout),
   LoginSuccessAction: createAction(AuthActionTypes.LoginSuccess, props<{ payload: any }>()),
   LoginFailureAction: createAction(AuthActionTypes.LoginFailure, props<{ payload: any }>()),
+  LogoutAction: createAction(AuthActionTypes.Logout),
   ChangePasswordAction: createAction(AuthActionTypes.ChangePassword, props<{ payload: any }>()),
   ChangePasswordSuccessAction: createAction(AuthActionTypes.ChangePasswordSuccess, props<{ payload: any }>()),
   ChangePasswordFailureAction: createAction(AuthActionTypes.ChangePasswordFailure, props<{ payload: any }>()),

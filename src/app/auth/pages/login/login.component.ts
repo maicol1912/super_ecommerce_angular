@@ -22,8 +22,8 @@ export class LoginComponent {
   }
 
   public authForm: FormGroup = this.formBuilder.group({
-    email: ['', [Validators.required,Validators.email]],
-    password: ['', [Validators.required]],
+    email: ['', [Validators.required,Validators.email,Validators.minLength(10)]],
+    password: ['', [Validators.required,Validators.minLength(5)]],
   })
 
   login(){

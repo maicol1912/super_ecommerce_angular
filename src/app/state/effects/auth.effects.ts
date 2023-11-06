@@ -79,4 +79,24 @@ export class AuthEffects {
       }))
     , { dispatch: false });
 
+    logout$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AuthActionTypes.Logout),
+            map((action: any) => action.payload),
+            switchMap((payload) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Cierre de sesión exitoso',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+                this.router.navigate([PageResources.login]);
+                return of(AuthActions.endOfAuthEvents(payload));
+            })
+        )
+    );
 }
