@@ -4,7 +4,7 @@
       <h2 class="card-title text-center">Iniciar Sesión</h2>
       <form [formGroup]="authForm" style="height: 100%">
         <div class="form-group mb-3">
-          <label for="username" class="row">Nombre de Usuario</label>
+          <label for="username" class="row">Email</label>
           <input type="email" matInput class="form-control" id="username" formControlName="email" placeholder="Ingrese su usuario" autocomplete="off">
           <div *ngIf="authForm.get('email')?.value?.length > 0" class="valid-invalid d-flex">
             <i class="material-icons valid-invalid-icon-cancel" style="margin-top:5px;font-size: 15px;">{{authForm.get('email')?.valid ? "check" : "cancel"}}</i>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="text-center">
-          <button mat-button class="mat-button-base fx-align-center" type="submit" style="width: 350px" (click)="login()">Ingresar</button>
+          <button mat-button class="mat-button-base fx-align-center" (click)="login()">Ingresar</button>
         </div>
       </form>
     </div>

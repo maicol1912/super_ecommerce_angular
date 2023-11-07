@@ -5,8 +5,8 @@ import {PageResources} from "../../helpers/page-resources";
 import {AuthService} from "../services/auth.service";
 import {map, Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
-import {selectAccessToken} from "../../state/reducers";
 import {Store} from "@ngrx/store";
+import {CryptoLibrary} from "../../helpers/crypto.library";
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +23,9 @@ export class AuthGuard implements CanActivate {
       this.router.navigate([PageResources.login]);
       return of(false);
     }
-       const tokenFormatted = token.replace(/"/g, '');
+    const tokenFormatted = CryptoLibrary.decrypt(token).replace(/"/g, '');
      return this.authService.checkJwt(tokenFormatted).pipe(
-       map((response: boolean) => {
+       map((response) => {
          if (!response) {
            this.router.navigate([PageResources.login]);
            return false;

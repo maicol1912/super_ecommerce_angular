@@ -7,24 +7,20 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CryptoLibrary {
 
-  private saltKey;
-  constructor() {
-
-    this.saltKey = environment.keyCrypto;
-  }
+  static saltKey = environment.keyCrypto;
 
 
-  public encrypt(text: string): string {
+  static encrypt(text: string): string {
     const encrypted = crypto.AES.encrypt(text, this.saltKey).toString();
     return encrypted;
   }
 
-  public decrypt(encrypted: string): string {
+  static decrypt(encrypted: string): string {
     const decrypted = crypto.AES.decrypt(encrypted, this.saltKey).toString(crypto.enc.Utf8);
     return decrypted;
   }
 
-  public encryptObject(objectToEncrypt: object, encryptKey = false): { [key: string]: any } {
+  static encryptObject(objectToEncrypt: object, encryptKey = false): { [key: string]: any } {
     const objectToReturn: any = {};
     Object.entries(objectToEncrypt).forEach(([key, value]) => {
       const newValue = this.encrypt(value);
@@ -33,7 +29,7 @@ export class CryptoLibrary {
     return objectToReturn;
   }
 
-  public decryptObject(objectToDecrypt: object, decryptKey = false): object {
+  static decryptObject(objectToDecrypt: object, decryptKey = false): object {
     const objectToReturn: any = {};
     Object.entries(objectToDecrypt).forEach(([key, value]) => {
       const newValue = this.decrypt(value);
@@ -43,11 +39,11 @@ export class CryptoLibrary {
     return objectToReturn;
   }
 
-  public encryptHash(elementToHash: string): string {
+  static encryptHash(elementToHash: string): string {
     return elementToHash//bcrypt.hashSync(elementToHash, 10);
   }
 
-  public compareHash(elementToHash: string, currentHash: string): boolean {
+  static compareHash(elementToHash: string, currentHash: string): boolean {
     return true //bcrypt.compareSync(elementToHash, currentHash);
   }
 

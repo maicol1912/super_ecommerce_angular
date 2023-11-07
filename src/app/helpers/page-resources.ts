@@ -7,7 +7,5 @@ import { environment } from 'src/environments/environment';
 export const PageResources = {
   listProducts: '/dash/products',
   login: '/auth/login',
-  completeData: 'auth/signin',
-  resetPassword: 'auth/forgot',
-  dashboardStatus: 'app',
+  validateEmail: '/auth/validate-email',
 };

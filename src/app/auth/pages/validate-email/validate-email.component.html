@@ -1,0 +1,28 @@
+<div class="container height-100 d-flex justify-content-center align-items-center">
+  <div class="position-relative">
+    <div class="card p-2 text-center">
+      <h6>Porfavor ingrese el codigo otp para verificar tu correo</h6>
+      <span style="color:orange;">El codigo expirara en 10 minutos</span>
+      <div> <span>El codigo ha sido enviado a tu correo:  </span> <small>{{correoSent}}</small>
+      </div>
+      <form [formGroup]="validateEmailForm" style="height: 100%">
+      <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+      <input class="m-2 text-center form-control rounded" formControlName="code1" type="text" id="first" maxlength="1" focusNextInput/>
+      <input class="m-2 text-center form-control rounded" formControlName="code2" type="text" id="second" maxlength="1" focusNextInput/>
+      <input class="m-2 text-center form-control rounded" formControlName="code3" type="text" id="third" maxlength="1" focusNextInput/>
+      <input class="m-2 text-center form-control rounded" formControlName="code4" type="text" id="fourth" maxlength="1" focusNextInput/>
+      <input class="m-2 text-center form-control rounded" formControlName="code5" type="text" id="fifth" maxlength="1" focusNextInput/>
+      <input class="m-2 text-center form-control rounded" formControlName="code6" type="text" id="sixth" maxlength="1" focusNextInput/>
+      </div>
+      </form>
+      <div class="mt-4">
+        <button mat-button class="mat-button-base" (click)="validateEmail()">Verificar email</button>
+        <button mat-button class="mat-button-base" (click)="resendOtpCode()">Reenviar codigo</button>
+      </div>
+    </div>
+    <div class="card-2">
+      <div class="content d-flex justify-content-center align-items-center">
+      </div>
+    </div>
+  </div>
+</div>

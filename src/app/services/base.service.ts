@@ -22,7 +22,8 @@ export class BaseService {
      * return {Observable<any>}
      */
     protected httpGet(path: string, params: any = {}, subscribeToNavigation = true): Observable<any> {
-        let options: any = { params: this.renderParams(params) }
+
+      let options: any = { params: this.renderParams(params) }
         'responseType' in params ? options.responseType = params.responseType : null;
         return this.httpClient.get(
             `${this.apiUrl}${path}`,

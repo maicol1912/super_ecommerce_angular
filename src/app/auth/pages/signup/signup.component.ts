@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {PageResources} from "../../../helpers/page-resources";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SwalService} from "../../../services/swal.service";
 import {Store} from "@ngrx/store";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthActions} from "../../../state/actions";
-import {selectAccessToken} from "../../../state/reducers";
+import {SwalService} from "../../../services/swal.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class LoginComponent {
+export class SignupComponent {
+
   constructor(
     private readonly authService:AuthService,
     private router: Router,
@@ -22,15 +21,17 @@ export class LoginComponent {
   ) {
   }
 
-  public authForm: FormGroup = this.formBuilder.group({
+  public signupForm: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required,Validators.minLength(10)]],
     email: ['', [Validators.required,Validators.email,Validators.minLength(10)]],
     password: ['', [Validators.required,Validators.minLength(5)]],
+    type: ['customer']
   })
 
-  login(){
-    this.authForm.markAllAsTouched();
-    if (this.authForm.valid) {
-        this.store.dispatch(AuthActions.LoginAction({payload:this.authForm.value}))
+  signup(){
+    this.signupForm.markAllAsTouched();
+    if (this.signupForm.valid) {
+      this.store.dispatch(AuthActions.SignupAction({payload:this.signupForm.value}))
     }else{
       SwalService.openErrorAlert("Error en formulario","El formulario no es valido")
     }

@@ -1,10 +1,7 @@
 export interface AuthState {
   isLoading?: any,
-  message: any,
-  success: any,
+  error: any,
   result: any,
-  timestamps:any,
-  statusCode:any,
-  path:any,
-  error:any
+  accessToken: any
+  user:any
 }
