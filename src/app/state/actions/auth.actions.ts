@@ -13,9 +13,19 @@ export enum AuthActionTypes{
   ResendOtpCode = '[Auth] reenviar codigo otp',
   ResendOtpCodeSuccess = '[Auth] reenviar codigo otp exitoso',
   ResendOtpCodeFailure = '[Auth] reenviar codigo otp fallido',
+
+
+  SendLinkChangePassword = '[Auth] Enviar link cambio contraseña',
+  SendLinkChangePasswordSuccess = '[Auth] Enviar link cambio de contraseña exitoso',
+  SendLinkChangePasswordFailure = '[Auth] Enviar link cambio de contraseña fallido',
+
   ChangePassword = '[Auth] Cambiar contraseña',
   ChangePasswordSuccess = '[Auth] Cambio de contraseña exitoso',
   ChangePasswordFailure = '[Auth] Cambio de contraseña fallido',
+
+  ForgotPassword = '[Auth] olvidar contraseña',
+  ForgotPasswordSuccess = '[Auth] olvidar contraseña exitoso',
+  ForgotPasswordFailure = '[Auth] olvidar contraseña fallido',
 
   FindUser = '[Auth] Buscando usuario',
   FindUserSuccess = '[Auth] Busqueda de usuario exitosa',
@@ -44,9 +54,19 @@ export const AuthActions = {
   ResendOtpCodeFailureAction: createAction(AuthActionTypes.ResendOtpCodeFailure, props<{ payload: any }>()),
 
   LogoutAction: createAction(AuthActionTypes.Logout),
+
+  ForgotPasswordAction: createAction(AuthActionTypes.ForgotPassword, props<{ payload: any }>()),
+  ForgotPasswordSuccessAction: createAction(AuthActionTypes.ForgotPasswordSuccess, props<{ payload: any }>()),
+  ForgotPasswordFailureAction: createAction(AuthActionTypes.ForgotPasswordFailure, props<{ payload: any }>()),
+
   ChangePasswordAction: createAction(AuthActionTypes.ChangePassword, props<{ payload: any }>()),
   ChangePasswordSuccessAction: createAction(AuthActionTypes.ChangePasswordSuccess, props<{ payload: any }>()),
   ChangePasswordFailureAction: createAction(AuthActionTypes.ChangePasswordFailure, props<{ payload: any }>()),
+
+  SendLinkChangePasswordAction: createAction(AuthActionTypes.SendLinkChangePassword, props<{ payload: any }>()),
+  SendLinkChangePasswordSuccessAction: createAction(AuthActionTypes.SendLinkChangePasswordSuccess, props<{ payload: any }>()),
+  SendLinkChangePasswordFailureAction: createAction(AuthActionTypes.SendLinkChangePasswordFailure, props<{ payload: any }>()),
+
   FindUserAction: createAction(AuthActionTypes.FindUser, props<{ payload: any }>()),
   FindUserSuccessAction: createAction(AuthActionTypes.FindUserSuccess, props<{ payload: any }>()),
   FindUserFailureAction: createAction(AuthActionTypes.FindUserFailure, props<{ payload: any }>()),

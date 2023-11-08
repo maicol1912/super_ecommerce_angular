@@ -314,4 +314,224 @@ export class AuthEffects {
       return of(AuthActions.endOfAuthEvents(payload))
     }))
   );
+
+
+  ForgotPassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActionTypes.ForgotPassword),
+      map((action: any) => action.payload),
+      switchMap((payload) => {
+        return this.authService.forgotPassword(payload.email).pipe(
+          map((res) => {
+            if (res && res.success) {
+              const response = Object.assign({}, res);
+              return AuthActions.ForgotPasswordSuccessAction({payload:response});
+            }
+            return AuthActions.ForgotPasswordFailureAction({
+              payload: {
+                error: {
+                  message:
+                    res.error?.message ||
+                    'Usuario o contraseña incorecta.',
+                  error:
+                    res.error || 'Usuario o contraseña incorecta.',
+                },
+              }
+            });
+          }),
+          catchError((error) => {
+            return of(AuthActions.VerifyEmailFailureAction({
+              payload: {
+                error: { message: 'Error inexperado, contacte con el administrador', error },
+              }
+            }));
+          })
+        )
+      })
+    )
+  )
+
+  ForgotPasswordFailure$ = createEffect(() => this.actions$.pipe(
+      ofType(AuthActionTypes.ForgotPasswordFailure),
+      map((action: any) => action.payload),
+      switchMap((payload) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Cambio de contrasena fallida',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
+        return of(AuthActions.endOfAuthEvents(payload))
+      }))
+    , { dispatch: false });
+
+  ForgotPasswordSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActionTypes.ForgotPasswordSuccess),
+    map((action: any) => action.payload),
+    switchMap((payload) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Cambio de contrasena correcta, las credenciales fueron enviadas',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+      this.router.navigate([PageResources.login]);
+      return of(AuthActions.endOfAuthEvents(payload))
+    }))
+  );
+
+
+
+  ChangePassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActionTypes.ChangePassword),
+      map((action: any) => action.payload),
+      switchMap((payload) => {
+        return this.authService.changePassword(payload).pipe(
+          map((res) => {
+            if (res && res.success) {
+              const response = Object.assign({}, res);
+              return AuthActions.ChangePasswordSuccessAction({payload:response});
+            }
+            return AuthActions.ChangePasswordFailureAction({
+              payload: {
+                error: {
+                  message:
+                    res.error?.message ||
+                    'Usuario o contraseña incorecta.',
+                  error:
+                    res.error || 'Usuario o contraseña incorecta.',
+                },
+              }
+            });
+          }),
+          catchError((error) => {
+            return of(AuthActions.ChangePasswordFailureAction({
+              payload: {
+                error: { message: 'Error inexperado, contacte con el administrador', error },
+              }
+            }));
+          })
+        )
+      })
+    )
+  )
+
+  ChangePasswordFailure$ = createEffect(() => this.actions$.pipe(
+      ofType(AuthActionTypes.ChangePasswordFailure),
+      map((action: any) => action.payload),
+      switchMap((payload) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Cambio de contrasena fallida',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
+        return of(AuthActions.endOfAuthEvents(payload))
+      }))
+    , { dispatch: false });
+
+  ChangePasswordSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActionTypes.ChangePasswordSuccess),
+    map((action: any) => action.payload),
+    switchMap((payload) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Cambio de contrasena correcta',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+      this.router.navigate([PageResources.listProducts]);
+      return of(AuthActions.endOfAuthEvents(payload))
+    }))
+  );
+
+
+  SendLinkChangePassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActionTypes.SendLinkChangePassword),
+      map((action: any) => action.payload),
+      switchMap((payload) => {
+        return this.authService.sendChangePassword(payload.email).pipe(
+          map((res) => {
+            if (res && res.success) {
+              const response = Object.assign({}, res);
+              return AuthActions.SendLinkChangePasswordSuccessAction({payload:response});
+            }
+            return AuthActions.SendLinkChangePasswordFailureAction({
+              payload: {
+                error: {
+                  message:
+                    res.error?.message ||
+                    'Usuario o contraseña incorecta.',
+                  error:
+                    res.error || 'Usuario o contraseña incorecta.',
+                },
+              }
+            });
+          }),
+          catchError((error) => {
+            return of(AuthActions.SendLinkChangePasswordFailureAction({
+              payload: {
+                error: { message: 'Error inexperado, contacte con el administrador', error },
+              }
+            }));
+          })
+        )
+      })
+    )
+  )
+
+  SendLinkChangePasswordFailure$ = createEffect(() => this.actions$.pipe(
+      ofType(AuthActionTypes.SendLinkChangePasswordFailure),
+      map((action: any) => action.payload),
+      switchMap((payload) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'envio de cambio de password fallida',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
+        return of(AuthActions.endOfAuthEvents(payload))
+      }))
+    , { dispatch: false });
+
+  SendLinkChangePasswordSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActionTypes.SendLinkChangePasswordSuccess),
+    map((action: any) => action.payload),
+    switchMap((payload) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Envio de cambio de password exitoso',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+      this.router.navigate([PageResources.login]);
+      return of(AuthActions.endOfAuthEvents(payload))
+    }))
+  );
 }

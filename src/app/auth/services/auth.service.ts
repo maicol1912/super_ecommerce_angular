@@ -8,7 +8,7 @@ import {catchError} from "rxjs/operators";
 import {LocalResources} from "../../helpers/local.resources";
 import {CryptoLibrary} from "../../helpers/crypto.library";
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PageResources} from "../../helpers/page-resources";
 
 @Injectable({
@@ -16,7 +16,7 @@ import {PageResources} from "../../helpers/page-resources";
 })
 export class AuthService extends BaseService{
 
-  constructor(httpClient: HttpClient,private readonly router:Router) {
+  constructor(httpClient: HttpClient,private readonly router:Router,private readonly activatedRoute: ActivatedRoute) {
     super(httpClient);
   }
   login(user:any){
@@ -36,6 +36,10 @@ export class AuthService extends BaseService{
           window.localStorage.setItem(
               LocalResources.AuthTokenLocal,
               CryptoLibrary.encrypt(JSON.stringify(response.result.token))
+          );
+          window.localStorage.setItem(
+            LocalResources.UserLocal,
+            CryptoLibrary.encrypt(JSON.stringify(response.result.user))
           );
         SwalService.openInfoAlert("Login exitoso","Se inicio sesion correctamente");
         return response;
@@ -67,7 +71,7 @@ export class AuthService extends BaseService{
         }
         window.localStorage.setItem(
           LocalResources.UserLocal,
-          CryptoLibrary.encrypt(JSON.stringify(response.result.email))
+          CryptoLibrary.encrypt(JSON.stringify(response.result.user))
         );
         SwalService.openInfoAlert("Registro exitoso","Ahora verifica tu correo por medio del codigo otp enviado");
         return response;
@@ -90,6 +94,70 @@ export class AuthService extends BaseService{
     );
   }
 
+  forgotPassword(email:any){
+    if(!email){
+      return of(null)
+    }
+    return this.httpGet(ApiResources.forgotPassword(email)).pipe(
+      map((response: any) => {
+        if(response && response.success) {
+          this.router.navigate([PageResources.login])
+        }
+        return response;
+      })
+    );
+  }
+
+  sendChangePassword(email:any){
+    if(!email){
+      return of(null)
+    }
+    try {
+      return this.httpGet(ApiResources.sentChangePassword(email)).pipe(
+        map((response: any) => {
+          if(response && response.success) {
+            return response;
+          }
+          return of(null)
+        })
+      );
+    } catch (error) {
+      return of(null);
+    }
+
+  }
+
+  changePassword(user:any){
+    if(!user){
+      return of(null)
+    }
+    const snapshot = this.activatedRoute.snapshot;
+    const token = snapshot.params['token']
+    if(!token){
+      return of(null)
+    }
+    const tokenNotHashed = CryptoLibrary.decrypt(token)
+    if(tokenNotHashed !== user.email){
+      return of(null)
+    }
+    try {
+      const messageDecrypt = CryptoLibrary.decrypt(token);
+      if(!messageDecrypt){
+        return of(null)
+      }
+      return this.httpPatch(ApiResources.changePassword(user.email,token),user).pipe(
+        map((response: any) => {
+          if(response && response.success) {
+            this.router.navigate([PageResources.listProducts])
+          }
+          return response;
+        })
+      );
+    } catch (error) {
+      return of(null);
+    }
+
+  }
   logout(user:any){
         return this.httpPost(ApiResources.login, user).pipe(
             map((response: any) => {
@@ -99,6 +167,9 @@ export class AuthService extends BaseService{
                 }
                 window.localStorage.removeItem(
                   LocalResources.AuthTokenLocal
+                );
+                window.localStorage.removeItem(
+                  LocalResources.UserLocal
                 );
                 return response;
             })

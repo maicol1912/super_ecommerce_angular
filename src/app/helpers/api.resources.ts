@@ -11,15 +11,13 @@ export const ApiResources = {
     `users/send-opt-email/${email}`,
   verifyEmail: (otp: string,email:string) =>
     `users/verify-email/${otp}/${email}`,
+  forgotPassword: (email:string) =>
+    `users/forgot-password/${email}`,
+  changePassword: (email:string,token:string) =>
+    `users/change-password/${email}/${token}`,
+  sentChangePassword: (email:string) =>
+    `users/sent-change-password/${email}`,
 
-  session: `usuario${environment.perfixEndpoints}/session`,
-  downloadClient: `resources${environment.perfixEndpoints}/downloadClient`,
-  registerUser: `usuario${environment.perfixEndpoints}/new`,
-  userListByUser: (user: string) =>
-    `usuario${environment.perfixEndpoints}/list/by-document/${user}`,
-  resetPassword: (id: string) =>
-    `usuario${environment.perfixEndpoints}/reset-password/${id}`,
-  myUserList: `usuario${environment.perfixEndpoints}/my-list`,
   clients: {
     create: () => 'crm-service/client',
     getAllClients: () => 'crm-service/client',
