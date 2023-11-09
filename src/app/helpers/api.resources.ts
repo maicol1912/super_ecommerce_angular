@@ -13,10 +13,10 @@ export const ApiResources = {
     `users/verify-email/${otp}/${email}`,
   forgotPassword: (email:string) =>
     `users/forgot-password/${email}`,
-  changePassword: (email:string,token:string) =>
-    `users/change-password/${email}/${token}`,
+  changePassword: (email:string) =>
+    `users/change-password/${email}`,
   sentChangePassword: (email:string) =>
-    `users/sent-change-password/${email}`,
+    `users/send-change-password/${email}`,
 
   clients: {
     create: () => 'crm-service/client',

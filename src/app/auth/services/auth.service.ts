@@ -127,25 +127,23 @@ export class AuthService extends BaseService{
 
   }
 
-  changePassword(user:any){
-    if(!user){
+  changePassword(object:any){
+    if(!object){
       return of(null)
     }
-    const snapshot = this.activatedRoute.snapshot;
-    const token = snapshot.params['token']
-    if(!token){
+    if(!object.token){
       return of(null)
     }
-    const tokenNotHashed = CryptoLibrary.decrypt(token)
-    if(tokenNotHashed !== user.email){
+    const tokenNotHashed = CryptoLibrary.decrypt(object.token)
+    if(tokenNotHashed !== object.email){
       return of(null)
     }
     try {
-      const messageDecrypt = CryptoLibrary.decrypt(token);
-      if(!messageDecrypt){
+      const tokenNotHashed = CryptoLibrary.decrypt(object.token)
+      if(tokenNotHashed !== object.email){
         return of(null)
       }
-      return this.httpPatch(ApiResources.changePassword(user.email,token),user).pipe(
+      return this.httpPatch(ApiResources.changePassword(object.email),object).pipe(
         map((response: any) => {
           if(response && response.success) {
             this.router.navigate([PageResources.listProducts])

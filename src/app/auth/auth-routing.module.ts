@@ -5,7 +5,7 @@ import {SignupComponent} from "./pages/signup/signup.component";
 import {ValidateEmailComponent} from "./pages/validate-email/validate-email.component";
 import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
 import {ChangePasswordComponent} from "./pages/change-password/change-password.component";
-import {ChangePasswordGuard} from "./guards/change-password.guard";
+import {SentChangePasswordComponent} from "./pages/sent-change-password/sent-change-password.component";
 
 const routes: Routes = [
   {
@@ -25,10 +25,13 @@ const routes: Routes = [
     component: ForgotPasswordComponent
   },
   {
-    path:'change-password/:token',
-    canActivate:[ChangePasswordGuard],
+    path:'change-password',
     component: ChangePasswordComponent
   },
+  {
+    path:'sent-change-password',
+    component: SentChangePasswordComponent
+  }
 
 ];
 
