@@ -6,8 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: dashboardPages.NavbarComponent,
-    children: [
-    ]
+    children: []
   },
   {
     path: 'orders',

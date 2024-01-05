@@ -1,0 +1,21 @@
+version: "3"
+services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - backend-network
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "448:448"
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    external: true
