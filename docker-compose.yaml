@@ -1,21 +1,8 @@
 version: "3"
 services:
-  angular-app:
+  demo-docker-angular:
     build:
       context: .
-      dockerfile: Dockerfile
-    networks:
-      - backend-network
-
-  nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile # Nombre del archivo Dockerfile si no es el predeterminado
     ports:
       - "448:448"
-    networks:
-      - backend-network
-
-networks:
-  backend-network:
-    external: true
